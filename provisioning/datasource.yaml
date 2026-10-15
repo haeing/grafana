@@ -1,0 +1,13 @@
+apiVersion: 1
+datasources:
+  - name: GL840 InfluxDB
+    uid: gl840-influx
+    type: influxdb
+    access: proxy
+    url: http://127.0.0.1:8086
+    database: gl840
+    jsonData:
+      dbName: gl840
+      version: InfluxQL
+      httpMode: GET
+      timeInterval: 1s

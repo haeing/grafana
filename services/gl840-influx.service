@@ -1,0 +1,12 @@
+[Unit]
+Description=GL840 historical CSV import
+After=network-online.target influxdb.service
+Requires=influxdb.service
+
+[Service]
+User=hanul
+ExecStart=/usr/bin/python3 /share/grafana/collectors/import_gl840_csv.py --watch
+Restart=on-failure
+RestartSec=10
+[Install]
+WantedBy=multi-user.target

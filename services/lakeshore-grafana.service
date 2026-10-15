@@ -1,0 +1,12 @@
+[Unit]
+Description=COREA Lake Shore 325 temperature collection
+After=network-online.target influxdb.service
+Requires=influxdb.service
+Wants=network-online.target
+[Service]
+User=hanul
+ExecStart=/usr/bin/python3 /share/grafana/collectors/lakeshore325.py
+Restart=on-failure
+RestartSec=10
+[Install]
+WantedBy=multi-user.target

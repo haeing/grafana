@@ -1,0 +1,327 @@
+{
+  "uid": "gl840-ch1-ch3",
+  "title": "Gas Target",
+  "schemaVersion": 39,
+  "version": 1,
+  "timezone": "Asia/Seoul",
+  "refresh": "5s",
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Target Pressure",
+      "type": "timeseries",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gl840-influx"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawQuery": true,
+          "query": "SELECT mean(\"target_pressure_torr\") FROM \"gl840_live\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "resultFormat": "time_series",
+          "alias": "Target Pressure"
+        },
+        {
+          "refId": "B",
+          "rawQuery": true,
+          "query": "SELECT mean(\"target_pressure_torr\") / 760.0 FROM \"gl840_live\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "resultFormat": "time_series",
+          "alias": "Target Pressure (atm)"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "suffix: Torr",
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "fillOpacity": 0,
+            "showPoints": "auto",
+            "spanNulls": 90000,
+            "axisLabel": "Pressure (Torr)"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "suffix: atm"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "yellow"
+                }
+              },
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "custom.axisLabel",
+                "value": "Pressure (atm)"
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 0
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "never"
+              },
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": true,
+                  "viz": false
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "interval": "30s"
+    },
+    {
+      "id": 2,
+      "title": "Chamber Pressure",
+      "type": "timeseries",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gl840-influx"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawQuery": true,
+          "query": "SELECT mean(\"chamber_pressure_torr\") FROM \"gl840_live\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "resultFormat": "time_series",
+          "alias": "Chamber Pressure"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "suffix: Torr",
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "fillOpacity": 0,
+            "showPoints": "auto",
+            "spanNulls": 90000,
+            "axisLabel": "Pressure (Torr)"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "interval": "30s"
+    },
+    {
+      "id": 4,
+      "title": "Target Monitor Temperature",
+      "type": "timeseries",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gl840-influx"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 10,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawQuery": true,
+          "query": "SELECT mean(\"temperature_a_k\") FROM \"lakeshore325\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "resultFormat": "time_series",
+          "alias": "Target Monitor Temperature"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "kelvin",
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "fillOpacity": 0,
+            "showPoints": "auto",
+            "spanNulls": 30000,
+            "axisLabel": "Temperature (K)"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "interval": "10s"
+    },
+    {
+      "id": 5,
+      "title": "Target Set Temperature",
+      "type": "timeseries",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gl840-influx"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 10,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawQuery": true,
+          "query": "SELECT mean(\"setpoint_1_k\") FROM \"lakeshore325\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "resultFormat": "time_series",
+          "alias": "Target Set Temperature"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "kelvin",
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "fillOpacity": 0,
+            "showPoints": "auto",
+            "spanNulls": 30000,
+            "axisLabel": "Temperature (K)"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "interval": "10s"
+    },
+    {
+      "id": 6,
+      "title": "Heater Output",
+      "type": "timeseries",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gl840-influx"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 20,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawQuery": true,
+          "query": "SELECT mean(\"heater_output_percent\") FROM \"lakeshore325\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "resultFormat": "time_series",
+          "alias": "Heater Output"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "fillOpacity": 0,
+            "showPoints": "auto",
+            "spanNulls": 30000,
+            "axisLabel": "Heater output (%)"
+          },
+          "min": 0,
+          "max": 100
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "interval": "10s"
+    }
+  ],
+  "description": "Live GL840 readings every 30 seconds. Target: (CH1 voltage - 1) * 937.58 Torr. Chamber: 10^(2*(CH3 voltage - 5.5)) Torr. Timestamps are computer acquisition times.",
+  "tags": [
+    "COREA",
+    "Gas Target"
+  ]
+}

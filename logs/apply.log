@@ -1,0 +1,15 @@
+Updated COREA > Gas Target. Backup: /var/tmp/corea-grafana-backup.3LDLRv
+-- Logs begin at Tue 2025-08-19 11:32:27 KST, end at Thu 2026-10-15 14:25:35 KST. --
+10월 15 14:25:23 ctrl2 systemd[1]: Stopped COREA Lake Shore 325 temperature collection.
+10월 15 14:25:23 ctrl2 systemd[1]: gl840-live.service: Succeeded.
+10월 15 14:25:23 ctrl2 systemd[1]: Stopped COREA GL840 pressure collection.
+10월 15 14:25:23 ctrl2 systemd[1]: Started COREA GL840 pressure collection.
+10월 15 14:25:23 ctrl2 systemd[1]: Started COREA Lake Shore 325 temperature collection.
+10월 15 14:25:23 ctrl2 python3[375284]: GL840 channel configuration accepted (CH1=1-5V/10V, CH3=10V)
+10월 15 14:25:23 ctrl2 python3[375285]: Connected: LSCI,MODEL325,#######,1.8/1.1
+10월 15 14:25:23 ctrl2 python3[375284]: 2026-10-15T05:25:23.716277+00:00 CH1=1.7875 V -> 738.344 Torr; CH3=6.886 V -> 591.562 Torr [CH1 raw=3575, divisor=2000, calibration unverified]
+10월 15 14:25:24 ctrl2 python3[375285]: 2026-10-15T05:25:24.090951+00:00 A=296.4 K, Setpoint=251.0 K, Heater=0.0 %
+10월 15 14:25:28 ctrl2 python3[375284]: 2026-10-15T05:25:28.714516+00:00 CH1=1.7875 V -> 738.344 Torr; CH3=6.8805 V -> 576.766 Torr [CH1 raw=3575, divisor=2000, calibration unverified]
+10월 15 14:25:33 ctrl2 python3[375284]: 2026-10-15T05:25:33.720682+00:00 CH1=1.7885 V -> 739.282 Torr; CH3=6.8825 V -> 582.103 Torr [CH1 raw=3577, divisor=2000, calibration unverified]
+10월 15 14:25:34 ctrl2 python3[375285]: 2026-10-15T05:25:34.098206+00:00 A=296.39 K, Setpoint=251.0 K, Heater=0.0 %
+Central Grafana configuration applied from /share/grafana.

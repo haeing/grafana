@@ -1,0 +1,7 @@
+apiVersion: 1
+providers:
+  - name: GL840
+    folder: COREA
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards/gl840.json
