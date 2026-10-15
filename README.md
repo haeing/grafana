@@ -10,6 +10,11 @@ Open the dashboard from a computer on the same network:
 
 http://192.168.10.4:3000/d/gl840-ch1-ch3
 
+Login credentials:
+
+- **Username:** `admin`
+- **Password:** `ku_hd_exp`
+
 Log in and select **Dashboards → COREA → Gas Target**. Use **Last 15 minutes**
 and a **5s** refresh interval for live monitoring.
 
