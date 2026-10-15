@@ -6,11 +6,10 @@ InfluxDB database. Grafana displays those measurements as line graphs.
 
 ## Open the dashboard
 
-On the acquisition computer, open:
+Open the dashboard from a computer on the same network:
 
-http://localhost:3000/d/gl840-ch1-ch3
+http://192.168.10.4:3000/d/gl840-ch1-ch3
 
-From another computer, replace `localhost` with the acquisition computer's IP address.
 Log in and select **Dashboards → COREA → Gas Target**. Use **Last 15 minutes**
 and a **5s** refresh interval for live monitoring.
 
