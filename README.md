@@ -102,7 +102,7 @@ services are collecting. In particular, the GL840 command port accepts one clien
 Grafana refreshes the dashboard every 5 seconds. Screen refresh and instrument
 collection are separate intervals.
 
-### GL840 pressure
+### GL840 pressure, ambient temperature, and humidity
 
 The collector reads the first and third analog channels from binary instantaneous
 measurement responses. Both currently use `raw / 2000` to obtain volts.
@@ -118,7 +118,16 @@ or control acquisition. After an instrument range change, compare the collected
 voltage with the instrument display before relying on converted pressure.
 
 InfluxDB measurement: `gl840_live`.
-Fields: `ch1_voltage`, `ch3_voltage`, `target_pressure_torr`, `chamber_pressure_torr`.
+Pressure fields: `ch1_voltage`, `ch3_voltage`, `target_pressure_torr`, `chamber_pressure_torr`.
+
+The **Ambient Temperature & Humidity** graph plots both series over the selected
+dashboard time range, with temperature (°C) on the left axis and humidity (%RH)
+on the right. CH4 and CH5 use DC 10 V input ranges.
+
+| Channel | 0 V | 10 V | Conversion | InfluxDB fields |
+| --- | --- | --- | --- | --- |
+| CH4 humidity | 0 %RH | 100 %RH | `voltage * 10` | `ch4_voltage`, `humidity_percent_rh` |
+| CH5 temperature | −50 °C | 50 °C | `voltage * 10 - 50` | `ch5_voltage`, `ambient_temperature_c` |
 
 ### Lake Shore 325 temperature and heater
 

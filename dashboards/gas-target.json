@@ -11,6 +11,142 @@
   },
   "panels": [
     {
+      "id": 8,
+      "title": "Target Pressure",
+      "type": "stat",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gl840-influx"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawQuery": true,
+          "query": "SELECT last(\"target_pressure_torr\") FROM \"gl840_live\" WHERE $timeFilter",
+          "resultFormat": "time_series",
+          "alias": "Target Pressure"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "suffix: Torr",
+          "noValue": "—"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "textMode": "value",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 9,
+      "title": "Target Pressure (atm)",
+      "type": "stat",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gl840-influx"
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 0,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawQuery": true,
+          "query": "SELECT last(\"target_pressure_torr\") / 760.0 FROM \"gl840_live\" WHERE $timeFilter",
+          "resultFormat": "time_series",
+          "alias": "Target Pressure (atm)"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "suffix: atm",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "yellow"
+          },
+          "noValue": "—"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "textMode": "value",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 10,
+      "title": "Chamber Pressure",
+      "type": "stat",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gl840-influx"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawQuery": true,
+          "query": "SELECT last(\"chamber_pressure_torr\") FROM \"gl840_live\" WHERE $timeFilter",
+          "resultFormat": "time_series",
+          "alias": "Chamber Pressure"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "suffix: Torr",
+          "noValue": "—"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "textMode": "value",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center"
+      }
+    },
+    {
       "id": 1,
       "title": "Target Pressure",
       "type": "timeseries",
@@ -20,7 +156,7 @@
       },
       "gridPos": {
         "x": 0,
-        "y": 0,
+        "y": 4,
         "w": 12,
         "h": 10
       },
@@ -122,7 +258,7 @@
       },
       "gridPos": {
         "x": 12,
-        "y": 0,
+        "y": 4,
         "w": 12,
         "h": 10
       },
@@ -164,6 +300,94 @@
       "interval": "30s"
     },
     {
+      "id": 11,
+      "title": "Target Monitor Temperature",
+      "type": "stat",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gl840-influx"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 14,
+        "w": 12,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawQuery": true,
+          "query": "SELECT last(\"temperature_a_k\") FROM \"lakeshore325\" WHERE $timeFilter",
+          "resultFormat": "time_series",
+          "alias": "Target Monitor Temperature"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "kelvin",
+          "noValue": "—"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "textMode": "value",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 12,
+      "title": "Target Set Temperature",
+      "type": "stat",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gl840-influx"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 14,
+        "w": 12,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawQuery": true,
+          "query": "SELECT last(\"setpoint_1_k\") FROM \"lakeshore325\" WHERE $timeFilter",
+          "resultFormat": "time_series",
+          "alias": "Target Set Temperature"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "kelvin",
+          "noValue": "—"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "textMode": "value",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center"
+      }
+    },
+    {
       "id": 4,
       "title": "Target Monitor Temperature",
       "type": "timeseries",
@@ -173,7 +397,7 @@
       },
       "gridPos": {
         "x": 0,
-        "y": 10,
+        "y": 18,
         "w": 12,
         "h": 10
       },
@@ -224,7 +448,7 @@
       },
       "gridPos": {
         "x": 12,
-        "y": 10,
+        "y": 18,
         "w": 12,
         "h": 10
       },
@@ -266,6 +490,140 @@
       "interval": "10s"
     },
     {
+      "id": 13,
+      "title": "Heater Output",
+      "type": "stat",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gl840-influx"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 28,
+        "w": 12,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawQuery": true,
+          "query": "SELECT last(\"heater_output_percent\") FROM \"lakeshore325\" WHERE $timeFilter",
+          "resultFormat": "time_series",
+          "alias": "Heater Output"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "noValue": "—"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "textMode": "value",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 14,
+      "title": "Temperature (CH5)",
+      "type": "stat",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gl840-influx"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 28,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawQuery": true,
+          "query": "SELECT last(\"ambient_temperature_c\") FROM \"gl840_live\" WHERE $timeFilter",
+          "resultFormat": "time_series",
+          "alias": "Temperature (CH5)"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "celsius",
+          "decimals": 1,
+          "noValue": "—"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "textMode": "value",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center"
+      }
+    },
+    {
+      "id": 15,
+      "title": "Humidity (CH4)",
+      "type": "stat",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gl840-influx"
+      },
+      "gridPos": {
+        "x": 18,
+        "y": 28,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawQuery": true,
+          "query": "SELECT last(\"humidity_percent_rh\") FROM \"gl840_live\" WHERE $timeFilter",
+          "resultFormat": "time_series",
+          "alias": "Humidity (CH4)"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "suffix: %RH",
+          "decimals": 1,
+          "noValue": "—"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "textMode": "value",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center"
+      }
+    },
+    {
       "id": 6,
       "title": "Heater Output",
       "type": "timeseries",
@@ -275,7 +633,7 @@
       },
       "gridPos": {
         "x": 0,
-        "y": 20,
+        "y": 32,
         "w": 12,
         "h": 10
       },
@@ -317,6 +675,87 @@
         }
       },
       "interval": "10s"
+    },
+    {
+      "id": 7,
+      "title": "Ambient Temperature & Humidity",
+      "type": "timeseries",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gl840-influx"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 32,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawQuery": true,
+          "query": "SELECT mean(\"ambient_temperature_c\") FROM \"gl840_live\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "resultFormat": "time_series",
+          "alias": "Temperature (CH5)"
+        },
+        {
+          "refId": "B",
+          "rawQuery": true,
+          "query": "SELECT mean(\"humidity_percent_rh\") FROM \"gl840_live\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "resultFormat": "time_series",
+          "alias": "Humidity (CH4)"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "celsius",
+          "decimals": 1,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "fillOpacity": 0,
+            "showPoints": "auto",
+            "spanNulls": 90000,
+            "axisLabel": "Temperature (°C)",
+            "axisPlacement": "left"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "suffix: %RH"
+              },
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "custom.axisLabel",
+                "value": "Humidity (%RH)"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "interval": "30s"
     }
   ],
   "description": "Live GL840 readings every 30 seconds. Target: (CH1 voltage - 1) * 937.58 Torr. Chamber: 10^(2*(CH3 voltage - 5.5)) Torr. Timestamps are computer acquisition times.",
